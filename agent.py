@@ -6,7 +6,7 @@ from memory_buffer import MemoryBuffer
 from dqn import DQN
 
 class Agent(object):
-    def __init__(self, action_space, observation_space, memory_size, lr=0.001, eps=1, gamma=0.990 ,batch_size=36, update_target_cntr=50, name='MoonLander-policy'):
+    def __init__(self, action_space, observation_space, memory_size, lr=0.001, eps=1, gamma=0.990 ,batch_size=32, update_target_cntr=50, name='MoonLander-policy'):
       self.action_space = action_space.n
       self.observation_space = observation_space.shape[0]
       self.update_target_cntr = update_target_cntr
@@ -22,7 +22,7 @@ class Agent(object):
       self.gamma = gamma
       self.eps_max = eps
       self.eps_min = 0.01
-      self.eps_decay_rate = 0.0050
+      self.eps_decay_rate = 0.001
 
       self.episode = 0
       self.name = name

@@ -17,7 +17,7 @@ In order for the library to work properly you have to have installed pytorch, nu
 
 ### How to use the library
 
-For an agent to learn from an environment, you have to specify some characteristics like the action and observation space, learning rate, discount factor, etc. You have to name to model to save the best version of it and test it later.
+For an agent to learn from an environment, you have to specify some characteristics like the action and observation space, learning rate, discount factor, etc. You have to name the model to save the best version of it and test it later.
 
 By default there are set:
 ```python
