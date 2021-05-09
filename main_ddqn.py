@@ -1,26 +1,30 @@
 from agent import Agent
 import numpy as np
 import gym
+import torch
 
-
-ENVIROMENT_NAME = 'LunarLander-v2'#'CartPole-v1'
+env_names = ['CartPole-v1', 'LunarLander-v2','MountainCar-v0','Acrobot-v1' ]
+ENVIROMENT_NAME = env_names[1]
 MODEL_NAME = ENVIROMENT_NAME + '-policy'
 
 env = gym.make(ENVIROMENT_NAME)
 
-TRAINING_EPISODES = 1500
+TRAINING_EPISODES = 3000
 EVAL_EPISODES = 8
 
-
+memory_size = 10000
 
 done = False
-agent = Agent(env.action_space, env.observation_space, memory_size=50000, name=MODEL_NAME, lr=0.001, update_target_cntr=10)
+agent = Agent(env.action_space, env.observation_space, memory_size=memory_size, name=MODEL_NAME, lr=0.001, update_target_cntr=25)
 scores = []
 avg_score = None
+
+
 
 #training....
 def training_func():
     global done, agent, scores, avg_score, TRAINING_EPISODES
+
 
     for episode in range(TRAINING_EPISODES):
         state = env.reset()
@@ -70,7 +74,17 @@ def eval_func():
         score = 0
         done = False
 
+def random_agent():
+    for i_episode in range(3):
+        state = env.reset()
+        done = False
+        while not done:
+            env.render()
+            action = env.action_space.sample()
+            _, _, done, _ = env.step(action)
+
 
 if __name__ == '__main__':
     #training_func()
+    #random_agent()
     eval_func()
